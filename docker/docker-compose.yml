@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: cherry-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: cherry-db
+      MYSQL_USER: cherry
+      MYSQL_PASSWORD: cherry-password
+    ports:
+      - "3306:3306"
+    volumes:
+      - C:\dev\data\mysql:/var/lib/mysql
