@@ -18,6 +18,7 @@
         <version-mysql-connector>8.0.33</version-mysql-connector>
         <version-jaxb-api>2.3.1</version-jaxb-api>
         <version-compiler-plugin>3.13.0</version-compiler-plugin>
+        <version-spring-doc>2.8.3</version-spring-doc>
     </properties>
 
     <parent>
@@ -46,6 +47,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${version-spring-doc}</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
