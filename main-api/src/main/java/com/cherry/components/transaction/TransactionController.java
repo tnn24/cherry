@@ -7,31 +7,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(RESTPaths.TRANSACTIONS)
 public class TransactionController {
     @Autowired
     private TransactionService service;
 
-    @PostMapping(RESTPaths.TRANSACTIONS)
+    @PostMapping
     public Transaction create(@RequestBody Transaction entity) {
         return service.save(entity);
     }
 
-    @GetMapping(RESTPaths.TRANSACTIONS)
+    @GetMapping
     public List<Transaction> getAll() {
         return service.list();
     }
 
-    @GetMapping(RESTPaths.TRANSACTION_ID)
+    @GetMapping(RESTPaths.ID)
     public Transaction getOne(@PathVariable Long id) {
         return service.getById(id);
     }
 
-    @PutMapping(RESTPaths.TRANSACTION_ID)
+    @PutMapping(RESTPaths.ID)
     public Transaction replace(@RequestBody Transaction newEntity, @PathVariable Long id) {
         return service.replace(newEntity, id);
     }
 
-    @DeleteMapping(RESTPaths.TRANSACTION_ID)
+    @DeleteMapping(RESTPaths.ID)
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }

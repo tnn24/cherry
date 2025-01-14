@@ -1,5 +1,5 @@
 package com.cherry.components.account;
 
 public enum AccountType {
-    CASH, VENDOR, INVESTMENT
+    CASH, VENDOR, BROKERAGE, TAX, INCOME
 }

@@ -12,7 +12,10 @@ public class Account implements BaseEntity<Account> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private AccountType type;
+
+    @Column(nullable = false, unique = true)
     private String name;
 
     public Account(AccountType type) {

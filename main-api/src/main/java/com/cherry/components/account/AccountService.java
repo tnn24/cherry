@@ -17,5 +17,4 @@ public class AccountService extends BaseService<Account, Long> {
     protected EntityNotFoundException getEntityNotFoundException(Long id) {
         return new EntityNotFoundException(Account.class, id);
     }
-
 }
