@@ -1,7 +1,9 @@
 package com.cherry.components.transaction;
 
 import com.cherry.constants.RESTPaths;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,9 +14,12 @@ public class TransactionController {
     @Autowired
     private TransactionService service;
 
+    @Operation(summary = "Create a transaction",
+            description = "A transaction is a movement of fund from one account to another")
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Transaction create(@RequestBody Transaction entity) {
-        return service.save(entity);
+        return service.create(entity);
     }
 
     @GetMapping
@@ -33,6 +38,7 @@ public class TransactionController {
     }
 
     @DeleteMapping(RESTPaths.ID)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }

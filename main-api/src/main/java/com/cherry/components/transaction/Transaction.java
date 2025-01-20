@@ -25,13 +25,11 @@ public class Transaction implements BaseEntity<Transaction> {
     private Double amount;
     private Long time;
 
-    public Transaction(TransactionType type) {
-        this.type = type;
-    }
-
     @Override
     public Transaction replace(Transaction newEntity) {
-        return setAmount(newEntity.getAmount())
+        return setFromAccount(newEntity.getFromAccount())
+                .setToAccount(newEntity.getToAccount())
+                .setAmount(newEntity.getAmount())
                 .setTime(newEntity.getTime());
     }
 }

@@ -18,12 +18,9 @@ public class Account implements BaseEntity<Account> {
     @Column(nullable = false, unique = true)
     private String name;
 
-    public Account(AccountType type) {
-        this.type = type;
-    }
-
     @Override
     public Account replace(Account newEntity) {
-        return setName(newEntity.getName());
+        return setName(newEntity.getName())
+                .setType(newEntity.getType());
     }
 }
