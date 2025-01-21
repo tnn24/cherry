@@ -6,12 +6,12 @@ import com.cherry.components.account.AccountService;
 import com.cherry.components.account.AccountType;
 import com.cherry.constants.RESTPaths;
 import com.google.gson.Gson;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.testng.annotations.Test;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -43,5 +43,4 @@ public class AccountControllerTest {
                 .andExpect(jsonPath("$.name").value(name))
                 .andExpect(jsonPath("$.type").value(type.name()));
     }
-
 }

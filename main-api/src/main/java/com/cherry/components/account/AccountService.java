@@ -13,7 +13,7 @@ public class AccountService extends BaseService<Account, Long> {
     private AccountRepository repository;
 
     @Override
-    protected String isEntityValid(Account entity) {
-        return "";
+    protected Class<Account> getEntityClass() {
+        return Account.class;
     }
 }

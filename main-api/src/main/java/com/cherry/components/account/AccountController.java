@@ -2,6 +2,7 @@ package com.cherry.components.account;
 
 import com.cherry.constants.RESTPaths;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class AccountController {
                     "It can be an account from a bank, a stock broker, a vendor, an employer, or a tax")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Account create(@RequestBody Account entity) {
+    public Account create(@Valid @RequestBody Account entity) {
         return service.create(entity);
     }
 
@@ -34,7 +35,7 @@ public class AccountController {
     }
 
     @PutMapping(RESTPaths.ID)
-    public Account replace(@RequestBody Account newEntity, @PathVariable Long id) {
+    public Account replace(@Valid @RequestBody Account newEntity, @PathVariable Long id) {
         return service.replace(newEntity, id);
     }
 

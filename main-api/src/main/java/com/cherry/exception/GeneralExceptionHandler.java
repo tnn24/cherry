@@ -13,4 +13,11 @@ public class GeneralExceptionHandler {
         ErrorResponse error = new ErrorResponse(status.value(), ex.getMessage());
         return new ResponseEntity<>(error, status);
     }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ErrorResponse> badRequestHandler(BadRequestException ex) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErrorResponse error = new ErrorResponse(status.value(), ex.getMessage());
+        return new ResponseEntity<>(error, status);
+    }
 }

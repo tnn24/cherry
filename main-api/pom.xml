@@ -20,6 +20,7 @@
         <version-gson>2.11.0</version-gson>
         <version-compiler-plugin>3.13.0</version-compiler-plugin>
         <version-spring-doc>2.8.3</version-spring-doc>
+        <version-testng>7.10.2</version-testng>
     </properties>
 
     <parent>
@@ -73,6 +74,11 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>${version-gson}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${version-testng}</version>
         </dependency>
     </dependencies>
 
