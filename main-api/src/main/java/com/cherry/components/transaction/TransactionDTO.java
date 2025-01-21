@@ -1,20 +1,15 @@
 package com.cherry.components.transaction;
 
-import com.cherry.components.BaseEntity;
 import com.cherry.components.account.AccountService;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-@Data
-@Accessors(chain = true)
-public class TransactionDTO implements BaseEntity<TransactionDTO> {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Schema(name = TransactionTable.TABLE_NAME)
+@Data @Accessors(chain = true)
+public class TransactionDTO {
     private Long id;
 
     @NotNull(message = "Transaction type is required")
@@ -30,14 +25,6 @@ public class TransactionDTO implements BaseEntity<TransactionDTO> {
     private Double amount;
     @NotNull(message = "Timestamp is required")
     private Long timestamp;
-
-    @Override
-    public TransactionDTO replace(TransactionDTO newEntity) {
-        return setFromAccount(newEntity.getFromAccount())
-                .setToAccount(newEntity.getToAccount())
-                .setAmount(newEntity.getAmount())
-                .setTimestamp(newEntity.getTimestamp());
-    }
 
     public Transaction toTransaction(AccountService accountService) {
         return new Transaction()

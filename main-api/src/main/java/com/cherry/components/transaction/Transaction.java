@@ -2,36 +2,37 @@ package com.cherry.components.transaction;
 
 import com.cherry.components.BaseEntity;
 import com.cherry.components.account.Account;
+import com.cherry.components.account.AccountTable;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-@Data
-@Accessors(chain = true)
+@Schema(hidden = true)
+@Data @Accessors(chain = true)
 @Entity
+@Table(name = TransactionTable.TABLE_NAME)
 public class Transaction implements BaseEntity<Transaction> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = TransactionTable.COLUMN_ID)
     private Long id;
 
-    @NotNull(message = "Transaction type is required")
+    @Column(name = TransactionTable.COLUMN_TYPE)
     private TransactionType type;
 
-    @NotNull(message = "From account is required")
     @ManyToOne
-    @JoinColumn(name = "from_id", referencedColumnName = "id")
+    @JoinColumn(name = TransactionTable.COLUMN_FROM_ACCOUNT,
+            referencedColumnName = AccountTable.COLUMN_ID)
     private Account fromAccount;
-    @NotNull(message = "To account is required")
     @ManyToOne
-    @JoinColumn(name = "to_id", referencedColumnName = "id")
+    @JoinColumn(name = TransactionTable.COLUMN_TO_ACCOUNT,
+            referencedColumnName = AccountTable.COLUMN_ID)
     private Account toAccount;
 
-    @NotNull(message = "Amount is required")
-    @Positive(message = "Amount mist be larger than 0")
+    @Column(name = TransactionTable.COLUMN_AMOUNT)
     private Double amount;
-    @NotNull(message = "Timestamp is required")
+    @Column(name = TransactionTable.COLUMN_TIMESTAMP)
     private Long timestamp;
 
     @Override

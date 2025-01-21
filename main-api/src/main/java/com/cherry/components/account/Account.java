@@ -12,18 +12,21 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @Entity
+@Table(name = AccountTable.TABLE_NAME)
 public class Account implements BaseEntity<Account> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = AccountTable.COLUMN_ID)
     private Long id;
 
     @NotNull(message = "Account type is required")
+    @Column(name = AccountTable.COLUMN_TYPE)
     private AccountType type;
 
     @NotBlank(message = "Account name is required")
     @Size(min = 1, max = 100, message = "Account name must be between 1 and 100 characters")
     @Pattern(regexp = "^[a-zA-Z0-9 ]+$\n", message = "Account name must only contain letters and numbers")
-    @Column(nullable = false, unique = true)
+    @Column(name = AccountTable.COLUMN_NAME, nullable = false, unique = true)
     private String name;
 
     @Override
