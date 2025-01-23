@@ -1,6 +1,8 @@
 package com.cherry.components.account;
 
 import com.cherry.components.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,24 +11,31 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+@Schema(name = AccountConstant.TABLE_NAME)
 @Data
 @Accessors(chain = true)
 @Entity
-@Table(name = AccountTable.TABLE_NAME)
+@Table(name = AccountConstant.TABLE_NAME)
 public class Account implements BaseEntity<Account> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = AccountTable.COLUMN_ID)
+    @Column(name = AccountConstant.COLUMN_ID)
+    @JsonProperty(AccountConstant.JSON_KEY_ID)
     private Long id;
 
-    @NotNull(message = "Account type is required")
-    @Column(name = AccountTable.COLUMN_TYPE)
+    @NotNull(message = AccountConstant.ERROR_TYPE_REQUIRED)
+    @Column(name = AccountConstant.COLUMN_TYPE)
+    @JsonProperty(AccountConstant.JSON_KEY_TYPE)
     private AccountType type;
 
-    @NotBlank(message = "Account name is required")
-    @Size(min = 1, max = 100, message = "Account name must be between 1 and 100 characters")
-    @Pattern(regexp = "^[a-zA-Z0-9 ]+$\n", message = "Account name must only contain letters and numbers")
-    @Column(name = AccountTable.COLUMN_NAME, nullable = false, unique = true)
+    @NotBlank(message = AccountConstant.ERROR_NAME_REQUIRED)
+    @Size(min = AccountConstant.VALID_NAME_LENGTH_MIN,
+            max = AccountConstant.VALID_NAME_LENGTH_MAX,
+            message = AccountConstant.ERROR_NAME_LENGTH_VALID)
+    @Pattern(regexp = AccountConstant.VALID_NAME_PATTERN,
+            message = AccountConstant.ERROR_NAME_PATTERN_VALID)
+    @Column(name = AccountConstant.COLUMN_NAME, nullable = false, unique = true)
+    @JsonProperty(AccountConstant.JSON_KEY_NAME)
     private String name;
 
     @Override
