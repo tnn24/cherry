@@ -1,5 +1,6 @@
 package com.cherry.exception;
 
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 @ControllerAdvice
@@ -28,8 +30,7 @@ public class GeneralExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> methodArgumentNotValidHandler(MethodArgumentNotValidException ex) {
-        StringBuilder errorMessage = new StringBuilder();
-        ex.getBindingResult().getFieldErrors().forEach(e -> errorMessage.append(e.getDefaultMessage()).append(" "));
-        return badRequestHandler(new BadRequestException(errorMessage.toString().trim()));
+        return badRequestHandler(new BadRequestException(ex.getBindingResult().getFieldErrors().stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining(" "))));
     }
 }
