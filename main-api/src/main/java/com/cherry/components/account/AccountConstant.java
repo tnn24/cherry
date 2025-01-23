@@ -20,4 +20,5 @@ public class AccountConstant {
     public static final String ERROR_NAME_LENGTH_VALID = "Account name must be between 1 and 100 characters.";
     public static final String VALID_NAME_PATTERN = "^[a-zA-Z0-9 ]+$";
     public static final String ERROR_NAME_PATTERN_VALID = "Account name must only contain letters and numbers.";
+    public static final String ERROR_REPLACE_ID = "Path id %d doesn't match request body id %d";
 }

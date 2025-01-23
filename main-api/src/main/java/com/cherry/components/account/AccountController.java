@@ -1,6 +1,7 @@
 package com.cherry.components.account;
 
 import com.cherry.constants.RESTPaths;
+import com.cherry.exception.BadRequestException;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping(RESTPaths.ACCOUNTS)
@@ -36,6 +38,9 @@ public class AccountController {
 
     @PutMapping(RESTPaths.ID)
     public Account replace(@Valid @RequestBody Account newEntity, @PathVariable Long id) {
+        if (!Objects.equals(newEntity.getId(), id)) {
+            throw new BadRequestException(String.format(AccountConstant.ERROR_REPLACE_ID, id, newEntity.getId()));
+        }
         return service.replace(newEntity, id);
     }
 

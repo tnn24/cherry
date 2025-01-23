@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
 public class Transaction implements BaseEntity<Transaction> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = TransactionConstant.COLUMN_ID)
+    @Column(name = TransactionConstant.COLUMN_ID, updatable = false)
     private Long id;
 
     @Column(name = TransactionConstant.COLUMN_TYPE)
