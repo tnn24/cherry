@@ -1,17 +1,17 @@
 package com.cherry.components.account;
 
 import com.cherry.components.CustomPage;
+import com.cherry.constants.AccountConstant;
+import com.cherry.constants.PaginationConstant;
 import com.cherry.constants.RESTPaths;
+import com.cherry.constants.TransactionConstant;
 import com.cherry.exception.BadRequestException;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -30,8 +30,14 @@ public class AccountController {
     }
 
     @GetMapping
-    public CustomPage<Account> getAll(Pageable pageable) {
-        return service.findAll(pageable);
+    public CustomPage<Account> getAll(
+            @RequestParam(required = false, value = PaginationConstant.PARAM_KEY_PAGE,
+                    defaultValue = PaginationConstant.DEFAULT_PAGE_NUM) int page,
+            @RequestParam(required = false, value = PaginationConstant.PARAM_KEY_SIZE,
+                    defaultValue = PaginationConstant.DEFAULT_PAGE_SIZE) int size,
+            @RequestParam(required = false, value = PaginationConstant.PARAM_KEY_SORT,
+                    defaultValue = AccountConstant.JSON_KEY_ID) String sort) {
+        return service.findAll(CustomPage.toPageable(page, size, sort));
     }
 
     @GetMapping(RESTPaths.ID)

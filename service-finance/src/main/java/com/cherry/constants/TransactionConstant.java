@@ -1,4 +1,4 @@
-package com.cherry.components.transaction;
+package com.cherry.constants;
 
 public class TransactionConstant {
     // DB Table

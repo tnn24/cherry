@@ -2,7 +2,8 @@ package com.cherry.components.transaction;
 
 import com.cherry.components.BaseEntity;
 import com.cherry.components.account.Account;
-import com.cherry.components.account.AccountConstant;
+import com.cherry.constants.AccountConstant;
+import com.cherry.constants.TransactionConstant;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;

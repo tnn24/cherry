@@ -1,28 +1,31 @@
 package com.cherry.components;
 
+import com.cherry.constants.PaginationConstant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
 @Getter
 public class CustomPage<E> {
-    public static final String JSON_KEY_CONTENT = "content";
-    public static final String JSON_KEY_TOTAL_ELEMENTS = "totalElements";
-    public static final String JSON_KEY_TOTAL_PAGES = "totalPages";
-    public static final String JSON_KEY_CURRENT_PAGE = "currentPage";
-    public static final String JSON_KEY_PAGE_SIZE = "pageSize";
 
-    @JsonProperty(JSON_KEY_CONTENT)
+    public static Pageable toPageable(int page, int size, String sort) {
+        return PageRequest.of(page, size, Sort.by(sort.split(",")));
+    }
+
+    @JsonProperty(PaginationConstant.JSON_KEY_CONTENT)
     private final List<E> content;
-    @JsonProperty(JSON_KEY_TOTAL_ELEMENTS)
+    @JsonProperty(PaginationConstant.JSON_KEY_TOTAL_ELEMENTS)
     private final long totalElements;
-    @JsonProperty(JSON_KEY_TOTAL_PAGES)
+    @JsonProperty(PaginationConstant.JSON_KEY_TOTAL_PAGES)
     private final int totalPages;
-    @JsonProperty(JSON_KEY_CURRENT_PAGE)
+    @JsonProperty(PaginationConstant.JSON_KEY_CURRENT_PAGE)
     private final int currentPage;
-    @JsonProperty(JSON_KEY_PAGE_SIZE)
+    @JsonProperty(PaginationConstant.JSON_KEY_PAGE_SIZE)
     private final int pageSize;
 
     public CustomPage(Page<E> page) {

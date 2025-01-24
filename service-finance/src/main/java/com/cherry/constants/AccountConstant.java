@@ -1,4 +1,4 @@
-package com.cherry.components.account;
+package com.cherry.constants;
 
 public class AccountConstant {
     // DB Table

@@ -1,6 +1,7 @@
 package com.cherry.components.transaction;
 
 import com.cherry.components.account.AccountService;
+import com.cherry.constants.TransactionConstant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
