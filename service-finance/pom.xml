@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.tnn</groupId>
-    <artifactId>main-api</artifactId>
+    <artifactId>service-finance</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
