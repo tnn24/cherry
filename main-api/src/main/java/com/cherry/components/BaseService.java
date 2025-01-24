@@ -1,9 +1,9 @@
 package com.cherry.components;
 
 import com.cherry.exception.EntityNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
 
 public abstract class BaseService<T extends BaseEntity<T>, ID> {
 
@@ -11,8 +11,8 @@ public abstract class BaseService<T extends BaseEntity<T>, ID> {
         return getRepository().save(entity);
     }
 
-    public List<T> list() {
-        return getRepository().findAll();
+    public CustomPage<T> findAll(Pageable pageable) {
+        return new CustomPage<>(getRepository().findAll(pageable));
     }
 
     public T getById(ID id) {

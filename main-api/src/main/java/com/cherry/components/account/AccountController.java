@@ -1,10 +1,13 @@
 package com.cherry.components.account;
 
+import com.cherry.components.CustomPage;
 import com.cherry.constants.RESTPaths;
 import com.cherry.exception.BadRequestException;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +30,8 @@ public class AccountController {
     }
 
     @GetMapping
-    public List<Account> getAll() {
-        return service.list();
+    public CustomPage<Account> getAll(Pageable pageable) {
+        return service.findAll(pageable);
     }
 
     @GetMapping(RESTPaths.ID)

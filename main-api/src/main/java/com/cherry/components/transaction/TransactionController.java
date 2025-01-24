@@ -1,11 +1,14 @@
 package com.cherry.components.transaction;
 
+import com.cherry.components.CustomPage;
 import com.cherry.components.account.AccountService;
 import com.cherry.constants.RESTPaths;
 import com.cherry.exception.BadRequestException;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,12 +32,11 @@ public class TransactionController {
     }
 
     @GetMapping
-    public List<TransactionDTO> getAll(@RequestParam TransactionType type,
-                                       @RequestParam Long fromAccountId, @RequestParam Long toAccountId,
-                                       @RequestParam Long startTimestamp, @RequestParam Long endTimestamp) {
-        return transactionService
-                .getTransactions(type, fromAccountId, toAccountId, startTimestamp, endTimestamp)
-                .stream().map(Transaction::toDTO).toList();
+    public CustomPage<TransactionDTO> getAll(Pageable pageable, @RequestParam TransactionType type,
+                                             @RequestParam Long fromAccountId, @RequestParam Long toAccountId,
+                                             @RequestParam Long startTimeInclusive, @RequestParam Long endTimeInclusive) {
+        return transactionService.getTransactions(pageable, type,
+                fromAccountId, toAccountId, startTimeInclusive, endTimeInclusive);
     }
 
     @GetMapping(RESTPaths.ID)

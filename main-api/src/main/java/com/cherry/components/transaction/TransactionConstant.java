@@ -5,16 +5,16 @@ public class TransactionConstant {
     public static final String TABLE_NAME = "transaction";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_TYPE = "type";
-    public static final String COLUMN_FROM_ACCOUNT = "from_account_id";
-    public static final String COLUMN_TO_ACCOUNT = "to_account_id";
+    public static final String COLUMN_FROM_ACCOUNT = "fromAccountId";
+    public static final String COLUMN_TO_ACCOUNT = "toAccountId";
     public static final String COLUMN_AMOUNT = "amount";
     public static final String COLUMN_TIMESTAMP = "timestamp";
 
     // JSON Keys
     public static final String JSON_KEY_ID = "id";
     public static final String JSON_KEY_TYPE = "type";
-    public static final String JSON_KEY_FROM_ACCOUNT = "from_account_id";
-    public static final String JSON_KEY_TO_ACCOUNT = "to_account_id";
+    public static final String JSON_KEY_FROM_ACCOUNT = "fromAccountId";
+    public static final String JSON_KEY_TO_ACCOUNT = "toAccountId";
     public static final String JSON_KEY_AMOUNT = "amount";
     public static final String JSON_KEY_TIMESTAMP = "timestamp";
 
