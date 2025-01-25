@@ -1,6 +1,6 @@
 package com.cherry.config;
 
-import com.cherry.constants.RESTPaths;
+import com.cherry.components.RESTPaths;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

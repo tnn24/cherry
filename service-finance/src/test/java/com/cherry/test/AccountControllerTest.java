@@ -1,8 +1,8 @@
 package com.cherry.test;
 
 import com.cherry.components.account.*;
-import com.cherry.constants.AccountConstant;
-import com.cherry.constants.RESTPaths;
+import com.cherry.components.account.AccountConstant;
+import com.cherry.components.RESTPaths;
 import com.cherry.exception.ErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;

@@ -1,11 +1,10 @@
 package com.cherry.components.transaction;
 
 import com.cherry.components.BaseService;
-import com.cherry.components.CustomPage;
+import com.cherry.components.pagination.CustomPage;
 import lombok.AccessLevel;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;

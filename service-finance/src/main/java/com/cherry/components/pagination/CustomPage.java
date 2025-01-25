@@ -1,6 +1,5 @@
-package com.cherry.components;
+package com.cherry.components.pagination;
 
-import com.cherry.constants.PaginationConstant;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.springframework.data.domain.Page;

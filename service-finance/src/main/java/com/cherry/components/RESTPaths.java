@@ -1,4 +1,4 @@
-package com.cherry.constants;
+package com.cherry.components;
 
 public class RESTPaths {
     public final static String BASE = "/api";

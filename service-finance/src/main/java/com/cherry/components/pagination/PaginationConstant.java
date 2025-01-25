@@ -1,4 +1,4 @@
-package com.cherry.constants;
+package com.cherry.components.pagination;
 
 public class PaginationConstant {
     public static final String JSON_KEY_CONTENT = "content";
