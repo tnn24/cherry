@@ -1,4 +1,4 @@
-package com.tnn.component.exception;
+package com.tnn.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

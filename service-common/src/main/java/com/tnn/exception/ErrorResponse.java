@@ -1,4 +1,4 @@
-package com.tnn.component.exception;
+package com.tnn.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

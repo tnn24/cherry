@@ -1,4 +1,4 @@
-package com.tnn.component.pagination;
+package com.tnn.pagination;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

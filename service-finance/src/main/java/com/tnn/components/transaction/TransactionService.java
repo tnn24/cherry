@@ -1,7 +1,7 @@
 package com.tnn.components.transaction;
 
 import com.tnn.component.BaseService;
-import com.tnn.component.pagination.CustomPage;
+import com.tnn.pagination.CustomPage;
 import lombok.AccessLevel;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;

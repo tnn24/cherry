@@ -1,4 +1,4 @@
-package com.tnn.component.exception;
+package com.tnn.exception;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;

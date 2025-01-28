@@ -1,4 +1,4 @@
-package com.tnn.component.pagination;
+package com.tnn.pagination;
 
 public class PaginationConstant {
     public static final String JSON_KEY_CONTENT = "content";

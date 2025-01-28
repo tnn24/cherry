@@ -1,4 +1,4 @@
-package com.tnn.component.exception;
+package com.tnn.exception;
 
 import com.tnn.component.BaseEntity;
 import org.springframework.http.HttpStatus;

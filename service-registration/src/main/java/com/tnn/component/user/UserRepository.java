@@ -1,10 +1,10 @@
-package com.tnn.components.account;
+package com.tnn.component.user;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AccountRepository extends JpaRepository<Account, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     @Override
-    Page<Account> findAll(Pageable pageable);
+    Page<User> findAll(Pageable pageable);
 }

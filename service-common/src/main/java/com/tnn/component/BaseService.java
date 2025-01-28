@@ -1,7 +1,7 @@
 package com.tnn.component;
 
-import com.tnn.component.pagination.CustomPage;
-import com.tnn.component.exception.EntityNotFoundException;
+import com.tnn.pagination.CustomPage;
+import com.tnn.exception.EntityNotFoundException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 

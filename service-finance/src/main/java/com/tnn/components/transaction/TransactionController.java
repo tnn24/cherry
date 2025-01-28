@@ -1,10 +1,10 @@
 package com.tnn.components.transaction;
 
-import com.tnn.components.RESTPaths;
+import com.tnn.components.RESTPath;
 import com.tnn.components.account.AccountService;
-import com.tnn.component.exception.BadRequestException;
-import com.tnn.component.pagination.CustomPage;
-import com.tnn.component.pagination.PaginationConstant;
+import com.tnn.exception.BadRequestException;
+import com.tnn.pagination.CustomPage;
+import com.tnn.pagination.PaginationConstant;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(RESTPaths.TRANSACTIONS)
+@RequestMapping(RESTPath.TRANSACTIONS)
 public class TransactionController {
     @Autowired
     private TransactionService transactionService;
@@ -45,19 +45,19 @@ public class TransactionController {
                 type, fromAccountId, toAccountId, startTimeInclusive, endTimeInclusive);
     }
 
-    @GetMapping(RESTPaths.ID)
+    @GetMapping(RESTPath.ID)
     public TransactionDTO getOne(@PathVariable Long id) {
         return transactionService.getById(id).toDTO();
     }
 
-    @PutMapping(RESTPaths.ID)
+    @PutMapping(RESTPath.ID)
     public Transaction replace(@Valid @RequestBody TransactionDTO newEntity, @PathVariable Long id) {
         Transaction transaction = newEntity.toTransaction(accountService);
         validateTransaction(transaction);
         return transactionService.replace(transaction, id);
     }
 
-    @DeleteMapping(RESTPaths.ID)
+    @DeleteMapping(RESTPath.ID)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         transactionService.delete(id);

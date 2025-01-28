@@ -2,8 +2,8 @@ package com.tnn.test;
 
 import com.tnn.components.account.*;
 import com.tnn.components.account.AccountConstant;
-import com.tnn.components.RESTPaths;
-import com.tnn.component.exception.ErrorResponse;
+import com.tnn.components.RESTPath;
+import com.tnn.exception.ErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -54,7 +54,7 @@ public class AccountControllerTest {
         Account createdAccount = new Account().setId(accountId).setName(expectedName).setType(type);
         when(mockService.create(any(Account.class))).thenReturn(createdAccount);
 
-        mockMvc.perform(post(RESTPaths.ACCOUNTS)
+        mockMvc.perform(post(RESTPath.ACCOUNTS)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(OBJECT_MAPPER.writeValueAsString(newAccount)))
                 .andExpect(status().isCreated())
@@ -71,7 +71,7 @@ public class AccountControllerTest {
         Account expectedAccount = new Account().setId(accountId).setName(expectedName).setType(type);
         when(mockService.replace(updatedAccount, accountId)).thenReturn(expectedAccount);
 
-        mockMvc.perform(put(RESTPaths.ACCOUNTS + RESTPaths.ID, accountId)
+        mockMvc.perform(put(RESTPath.ACCOUNTS + RESTPath.ID, accountId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(OBJECT_MAPPER.writeValueAsString(updatedAccount)))
                 .andExpect(status().isOk())
@@ -95,7 +95,7 @@ public class AccountControllerTest {
     public void createFailure(String name, AccountType type, String errorMessage) throws Exception {
         Account newAccount = new Account().setName(name).setType(type);
 
-        mockMvc.perform(post(RESTPaths.ACCOUNTS)
+        mockMvc.perform(post(RESTPath.ACCOUNTS)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(OBJECT_MAPPER.writeValueAsString(newAccount)))
                 .andExpect(status().isBadRequest())
@@ -111,7 +111,7 @@ public class AccountControllerTest {
         long accountId = 15L;
         Account newAccount = new Account().setId(accountId).setName(name).setType(type);
 
-        mockMvc.perform(put(RESTPaths.ACCOUNTS + RESTPaths.ID, accountId)
+        mockMvc.perform(put(RESTPath.ACCOUNTS + RESTPath.ID, accountId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(OBJECT_MAPPER.writeValueAsString(newAccount)))
                 .andExpect(status().isBadRequest())
@@ -127,7 +127,7 @@ public class AccountControllerTest {
         long pathId = accountId + 1;
         Account updatedAccount = new Account().setId(accountId).setName("name").setType(AccountType.VENDOR);
 
-        mockMvc.perform(put(RESTPaths.ACCOUNTS + RESTPaths.ID, pathId)
+        mockMvc.perform(put(RESTPath.ACCOUNTS + RESTPath.ID, pathId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(OBJECT_MAPPER.writeValueAsString(updatedAccount)))
                 .andExpect(status().isBadRequest())
