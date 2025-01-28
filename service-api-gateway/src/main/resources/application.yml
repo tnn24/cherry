@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: service-finance
+          uri: http://localhost:8081
+          predicates:
+            - Paths: /api/finance/**
+        - id: service-registration
+          uri: http://localhost:8082
+          predicates:
+            - Paths: /api/registration/**
+server:
+  port: 8080
