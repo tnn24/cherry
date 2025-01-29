@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserAuthenticationService {
+public class UserRegistrationService {
     public static void main(String[] args) {
-        SpringApplication.run(UserAuthenticationService.class, args);
+        SpringApplication.run(UserRegistrationService.class, args);
     }
 }

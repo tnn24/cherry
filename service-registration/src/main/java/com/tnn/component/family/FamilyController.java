@@ -18,9 +18,7 @@ public class FamilyController {
     @Autowired
     private FamilyService service;
 
-    @Operation(summary = "Create a new Family",
-            description = "Create a financial Family. " +
-                    "It can be an Family from a bank, a stock broker, a vendor, an employer, or a tax")
+    @Operation(summary = "Create a new family")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Family create(@Valid @RequestBody Family entity) {
