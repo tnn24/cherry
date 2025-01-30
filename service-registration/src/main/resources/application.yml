@@ -20,4 +20,4 @@ springdoc:
     description: API for household and user management
     version: 1.0-SNAPSHOT
 server:
-  port: 8082
+  port: 8086

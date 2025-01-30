@@ -22,7 +22,7 @@ public class User implements BaseEntity<User> {
     private String firstName;
     @Column(name = UserConstant.COLUMN_LAST_NAME)
     private String lastName;
-    @Column(name = UserConstant.COLUMN_EMAIL)
+    @Column(name = UserConstant.COLUMN_EMAIL, unique = true)
     private String email;
 
     @Column(name = UserConstant.COLUMN_ROLE)

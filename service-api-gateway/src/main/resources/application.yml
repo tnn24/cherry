@@ -3,11 +3,11 @@ spring:
     gateway:
       routes:
         - id: service-finance
-          uri: http://localhost:8081
+          uri: http://localhost:8085
           predicates:
             - Paths: /api/finance/**
         - id: service-registration
-          uri: http://localhost:8082
+          uri: http://localhost:8086
           predicates:
             - Paths: /api/registration/**
 server:

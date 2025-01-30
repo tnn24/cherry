@@ -2,8 +2,6 @@ package com.tnn.component.user;
 
 import com.tnn.component.RESTPath;
 import com.tnn.component.family.FamilyService;
-import com.tnn.component.user.User;
-import com.tnn.component.user.UserConstant;
 import com.tnn.exception.BadRequestException;
 import com.tnn.pagination.CustomPage;
 import com.tnn.pagination.PaginationConstant;

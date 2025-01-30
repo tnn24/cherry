@@ -33,4 +33,11 @@ public class GeneralExceptionHandler {
         return badRequestHandler(new BadRequestException(ex.getBindingResult().getFieldErrors().stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.joining(" "))));
     }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ErrorResponse> unauthorizedHandler(UnauthorizedException ex) {
+        HttpStatus status = HttpStatus.UNAUTHORIZED;
+        ErrorResponse error = new ErrorResponse(status.value(), ex.getMessage(), LocalDateTime.now());
+        return new ResponseEntity<>(error, status);
+    }
 }
