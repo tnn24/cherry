@@ -21,13 +21,15 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <version-common-service>1.0-SNAPSHOT</version-common-service>
         <version-lombok>1.18.36</version-lombok>
         <version-slf4j>2.0.16</version-slf4j>
-        <version-mysql-connector>8.0.33</version-mysql-connector>
+        <version-postgresql>42.7.5</version-postgresql>
         <version-jaxb-api>2.3.1</version-jaxb-api>
-        <version-compiler-plugin>3.13.0</version-compiler-plugin>
         <version-spring-doc>2.8.3</version-spring-doc>
-        <version-common-service>1.0-SNAPSHOT</version-common-service>
+
+        <version-compiler-plugin>3.13.0</version-compiler-plugin>
+        <version-dockerfile-maven-plugin>1.4.13</version-dockerfile-maven-plugin>
     </properties>
 
     <parent>
@@ -72,9 +74,9 @@
             <version>${version-spring-doc}</version>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${version-mysql-connector}</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${version-postgresql}</version>
         </dependency>
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -84,6 +86,30 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>${version-dockerfile-maven-plugin}</version>
+                    <executions>
+                        <execution>
+                            <id>build-image</id>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <repository>${project.artifactId}</repository>
+                        <tag>${project.version}</tag>
+                        <buildArgs>
+                            <FAT_JAR>./target/${project.build.finalName}.jar</FAT_JAR>
+                        </buildArgs>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

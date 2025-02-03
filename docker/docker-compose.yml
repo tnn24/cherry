@@ -1,14 +1,27 @@
 version: '3.8'
 services:
-  mysql:
-    image: mysql:latest
-    container_name: cherry-mysql
+  postgres-db:
+    image: postgres:latest
+    container_name: postgres_container
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: cherry-db
-      MYSQL_USER: cherry
-      MYSQL_PASSWORD: cherry-password
+      POSTGRES_DB: tnn-db
+      POSTGRES_USER: tnn
+      POSTGRES_PASSWORD: tnn-password
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - C:\dev\data\mysql:/var/lib/mysql
+      - C:\dev\data\postgres:/var/lib/postgresql/data
+  service-finance:
+    image: service-finance:1.0-SNAPSHOT
+    container_name: service_finance
+    environment:
+      DB_HOST: postgres-db
+      DB_PORT: 5432
+      DB_NAME: tnn-db
+      DB_USERNAME: tnn
+      DB_PASSWORD: tnn-password
+    ports:
+      - "8085:8080"
+    depends_on:
+      - postgres-db
