@@ -12,10 +12,6 @@
 
     <artifactId>service-finance</artifactId>
 
-    <properties>
-        <version-service-common>1.0-SNAPSHOT</version-service-common>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.tnn</groupId>

@@ -1,14 +1,40 @@
 spring:
+  main:
+    web-application-type: reactive
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   cloud:
     gateway:
       routes:
+#        - id: service-registration
+#          uri: http://${SERVICE_REGISTRATION_HOST}:${SERVICE_REGISTRATION_PORT}
+#          predicates:
+#            - Path=/api/registration/**
+#          filters:
+#            - StripPrefix=2
         - id: service-finance
-          uri: http://localhost:8085
+          uri: http://${SERVICE_FINANCE_HOST}:${SERVICE_FINANCE_PORT}
           predicates:
-            - Paths: /api/finance/**
-        - id: service-registration
-          uri: http://localhost:8086
-          predicates:
-            - Paths: /api/registration/**
-server:
-  port: 8080
+            - Path=/api/finance/**
+          filters:
+            - StripPrefix=2
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    urls:
+#      - name: Registration Service
+#        url: /api/registration/api-docs
+      - name: Finance Service
+        url: /api/finance/api-docs

@@ -12,7 +12,7 @@
     <artifactId>service-api-gateway</artifactId>
 
     <properties>
-        <version-service-common>1.0-SNAPSHOT</version-service-common>
+        <version-spring-doc-webflux>2.8.4</version-spring-doc-webflux>
     </properties>
 
     <dependencyManagement>
@@ -29,18 +29,22 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.tnn</groupId>
-            <artifactId>service-common</artifactId>
-            <version>${version-service-common}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <scope>provided</scope> <!-- Prevent it from being included in the classpath -->
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+            <version>${version-spring-doc-webflux}</version>
         </dependency>
     </dependencies>
 

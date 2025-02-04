@@ -1,27 +1,57 @@
 version: '3.8'
 services:
   postgres-db:
-    image: postgres:latest
-    container_name: postgres_container
+    image: ${SERVICE_IMAGE_DB}:${SERVICE_VERSION_DB}
+    container_name: postgres
     restart: always
     environment:
-      POSTGRES_DB: tnn-db
-      POSTGRES_USER: tnn
-      POSTGRES_PASSWORD: tnn-password
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "5432:5432"
+      - "${DB_PORT}:5432"
     volumes:
-      - C:\dev\data\postgres:/var/lib/postgresql/data
+      - ${LOCAL_DATA_MOUNT}:/var/lib/postgresql/data
+#  service-api-gateway:
+#    image: ${SERVICE_IMAGE_API_GATEWAY}:${SERVICE_VERSION_API_GATEWAY}
+#    container_name: service-api-gateway
+#    environment:
+#      DB_HOST: postgres-db
+#      DB_PORT: ${DB_PORT}
+#      DB_NAME: ${DB_NAME}
+#      DB_USERNAME: ${DB_USERNAME}
+#      DB_PASSWORD: ${DB_PASSWORD}
+#      SERVICE_REGISTRATION_HOST: ${SERVICE_REGISTRATION_HOST}
+#      SERVICE_REGISTRATION_PORT: ${SERVICE_REGISTRATION_PORT}
+#      SERVICE_FINANCE_HOST: ${SERVICE_FINANCE_HOST}
+#      SERVICE_FINANCE_PORT: ${SERVICE_FINANCE_PORT}
+#    ports:
+#      - "80:8080"
+#    depends_on:
+#      - postgres-db
+#  service-registration:
+#    image: ${SERVICE_IMAGE_REGISTRATION}:${SERVICE_VERSION_REGISTRATION}
+#    container_name: service-registration
+#    environment:
+#      DB_HOST: postgres-db
+#      DB_PORT: ${DB_PORT}
+#      DB_NAME: ${DB_NAME}
+#      DB_USERNAME: ${DB_USERNAME}
+#      DB_PASSWORD: ${DB_PASSWORD}
+#    ports:
+#      - "${SERVICE_REGISTRATION_PORT}:8080"
+#    depends_on:
+#      - postgres-db
   service-finance:
-    image: service-finance:1.0-SNAPSHOT
-    container_name: service_finance
+    image: ${SERVICE_IMAGE_FINANCE}:${SERVICE_VERSION_FINANCE}
+    container_name: service-finance
     environment:
       DB_HOST: postgres-db
-      DB_PORT: 5432
-      DB_NAME: tnn-db
-      DB_USERNAME: tnn
-      DB_PASSWORD: tnn-password
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "8085:8080"
+      - "${SERVICE_FINANCE_PORT}:8080"
     depends_on:
       - postgres-db

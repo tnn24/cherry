@@ -12,7 +12,6 @@
     <artifactId>service-registration</artifactId>
 
     <properties>
-        <version-service-common>1.0-SNAPSHOT</version-service-common>
         <version-keycloak-client>26.0.4</version-keycloak-client>
     </properties>
 
