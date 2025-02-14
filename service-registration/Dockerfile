@@ -1,8 +1,8 @@
 FROM openjdk:21-jdk
 MAINTAINER Thien Nguyen <thnguyen24@gmail.com>
 
-ARG FAT_JAR
-ADD ${FAT_JAR} /usr/share/tnn/tnn-service.jar
+ARG JAR_FILE
+ADD ${JAR_FILE} /usr/share/tnn/tnn-service.jar
 
 EXPOSE 8080
 

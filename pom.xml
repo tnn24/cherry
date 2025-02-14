@@ -30,6 +30,7 @@
 
         <version-compiler-plugin>3.13.0</version-compiler-plugin>
         <version-dockerfile-maven-plugin>1.4.13</version-dockerfile-maven-plugin>
+        <version-fabric8-docker>0.45.1</version-fabric8-docker>
     </properties>
 
     <parent>
@@ -89,23 +90,30 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>com.spotify</groupId>
-                    <artifactId>dockerfile-maven-plugin</artifactId>
-                    <version>${version-dockerfile-maven-plugin}</version>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${version-fabric8-docker}</version>
                     <executions>
                         <execution>
                             <id>build-image</id>
                             <goals>
                                 <goal>build</goal>
                             </goals>
+                            <phase>package</phase>
                         </execution>
                     </executions>
                     <configuration>
-                        <repository>${project.artifactId}</repository>
-                        <tag>${project.version}</tag>
-                        <buildArgs>
-                            <FAT_JAR>./target/${project.build.finalName}.jar</FAT_JAR>
-                        </buildArgs>
+                        <images>
+                            <image>
+                                <name>${project.artifactId}:${project.version}</name>
+                                <build>
+                                    <dockerFile>${project.basedir}/Dockerfile</dockerFile>
+                                    <args>
+                                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                                    </args>
+                                </build>
+                            </image>
+                        </images>
                     </configuration>
                 </plugin>
             </plugins>
