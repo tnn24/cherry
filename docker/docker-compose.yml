@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   postgres-db:
-    image: ${SERVICE_IMAGE_DB}:${SERVICE_VERSION_DB}
+    image: ${DB_IMAGE}:${DB_VERSION}
     container_name: postgres
     restart: always
     environment:
@@ -11,7 +11,7 @@ services:
     ports:
       - "${DB_PORT}:5432"
     volumes:
-      - ${LOCAL_DATA_MOUNT}:/var/lib/postgresql/data
+      - ${DB_DATA_MOUNT}:/var/lib/postgresql/data
 #  service-api-gateway:
 #    image: ${SERVICE_IMAGE_API_GATEWAY}:${SERVICE_VERSION_API_GATEWAY}
 #    container_name: service-api-gateway
